@@ -57,3 +57,26 @@ JOIN
     Food_Item f_max ON i.item_name = f_max.item_name AND i.max_price = f_max.item_price
 JOIN 
     Restaurant r_max ON f_max.restaurant_id = r_max.restaurant_id;
+
+-- 3.3.7
+START TRANSACTION;
+CREATE TABLE Item_Statistics AS
+SELECT
+    item_name,
+    MAX(item_price) AS max_price,
+    MIN(item_price) AS min_price,
+    AVG(item_price) AS avg_price,
+    CASE
+        WHEN AVG(item_price) > 50 THEN 'High'
+        WHEN AVG(item_price) > 25 THEN 'Medium'
+        ELSE 'Low'
+    END AS price_category
+FROM
+    Food_Item
+GROUP BY
+    item_name;
+SELECT * FROM Item_Statistics;
+
+-- Assuming everything is successful Commit command is used
+COMMIT;
+

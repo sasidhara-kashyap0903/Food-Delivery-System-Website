@@ -32,7 +32,7 @@ mysql = MySQL(app)
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
 
 GOOGLE_CLIENT_ID = "782674812064-7rhm62kv2udu5a7emdfdlvormkvjb83h.apps.googleusercontent.com"
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client.json")
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "google.json")
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .menu-item {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .submit-button {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+      <button onclick="goBack()" class="btn btn-secondary mb-3">Back</button>
+
+      {% for item in restaurant_name %}
+      <h1 class="text-center mb-4">{{ item.restaurant_name }}</h1>
+      {% endfor %}
+      <div class="row">
+        {% for food in food_items %} {% if food.availability > 0 %}
+        <div class="col-md-6 col-lg-4">
+          <div class="menu-item">
+            <h5>{{ food.item_name }}</h5>
+            <p>Price: {{ food.item_price }}</p>
+            <p>Rating: {{ food.item_rating }}</p>
+            <p>Type: {{ food.item_type }}</p>
+            <p>Orders: {{ food.order_count }}</p>
+            <p>Availability: {{ food.availability }}</p>
+            <p>Vegetarian: {{ food.vegetarian }}</p>
+            <p>
+              Item Quantity: <span id="order-count-{{ food.item_id }}">0</span>
+            </p>
+            <p>
+              Notes:
+              <input
+                type="text"
+                id="item-notes-{{ food.item_id }}"
+                placeholder="Add notes for {{ food.item_name }}"
+              />
+            </p>
+            <button
+              class="btn btn-success"
+              onclick="increaseCount('{{ food.item_id }}')"
+            >
+              +
+            </button>
+            <button
+              class="btn btn-danger"
+              onclick="decreaseCount('{{ food.item_id }}')"
+            >
+              -
+            </button>
+            <a
+              class="btn btn-primary submit-button"
+              href="{{ url_for('review_submission', restaurant_name = restaurant_name, item_name = food.item_name, item_orders = food.order_count, ori_item_rating = food.item_rating )}}"
+            >
+              Submit Review
+            </a>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary" onclick="promptPaymentMethod()">
+          Finalize Order
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+
+      let itemCounts = {};
+
+      function increaseCount(itemId) {
+        if (!itemCounts[itemId]) {
+          itemCounts[itemId] = 0;
+        }
+        itemCounts[itemId]++;
+        document.getElementById("order-count-" + itemId).innerText =
+          itemCounts[itemId];
+      }
+
+      function decreaseCount(itemId) {
+        if (!itemCounts[itemId] || itemCounts[itemId] <= 0) {
+          itemCounts[itemId] = 0;
+        } else {
+          itemCounts[itemId]--;
+        }
+        document.getElementById("order-count-" + itemId).innerText =
+          itemCounts[itemId];
+      }
+
+      function promptPaymentMethod() {
+        const paymentMethod = prompt(
+          "Please select a payment method (cash/upi/card)"
+        );
+        if (paymentMethod) {
+          finalizeOrder(paymentMethod);
+        }
+      }
+
+      function finalizeOrder(paymentMethod) {
+        const url = window.location.href;
+        const restId = url.split("/").pop();
+
+        const orderedItems = [];
+        for (const itemId in itemCounts) {
+          if (itemCounts[itemId] > 0) {
+            const itemNotes = document.getElementById(
+              `item-notes-${itemId}`
+            ).value;
+            const itemPrice = parseFloat(
+              document
+                .querySelector(`[id^='order-count-${itemId}']`)
+                .parentNode.parentNode.querySelector("p:nth-child(2)")
+                .textContent.split(": ")[1]
+            );
+            orderedItems.push({
+              item_id: itemId,
+              item_quantity: itemCounts[itemId],
+              notes: itemNotes,
+              item_price: itemPrice,
+            });
+          }
+        }
+        if (orderedItems.length > 0) {
+          const redirectUrl = `{{ url_for('ordersummary') }}?rest_id=${restId}&payment_method=${paymentMethod}&payment_status=Successful&ordered_items=${encodeURIComponent(
+            JSON.stringify(orderedItems)
+          )}`;
+          window.location.href = redirectUrl;
+        } else {
+          alert("Please select at least one item to order.");
+        }
+      }
+    </script>
+  </body>
+</html>

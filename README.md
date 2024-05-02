@@ -11,11 +11,11 @@
 
 <p align="center">
   <a href="https://github.com/Sparky1743/Food-Delivery-System-Website/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
-  <a href="#license"><img src="https://img.shields.io/github/license/sourcerer-io/hall-of-fame.svg?colorB=ff0000"></a>
+  <a href="https://github.com/Sparky1743/Food-Delivery-System-Website/blob/main/LICENSE"><img src="https://img.shields.io/github/license/sourcerer-io/hall-of-fame.svg?colorB=ff0000"></a>
 </p>
 
 <p align="center">
-  <a href="https://www.pythonanywhere.com/"><span>Deployed with PythonAnywhere</span></a>
+  <a href="https://www.pythonanywhere.com/" style="text-decoration: none;"><img src="https://img.shields.io/badge/Deployed%20with-PythonAnywhere-blue"></a>
 </p>
 
 

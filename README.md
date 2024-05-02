@@ -30,10 +30,10 @@ Short on time? Check out our [5-minute demo ⏱️](https://iitgnacin-my.sharepo
 ## Installation for local use
 1. Clone this repository.
 2. Run the fooddeliverysystem.sql file in your sql workbench.
-3. Open the file ```app.py``` and update the mysql_password to your sql root database password.
+3. Open the file ```App/app.py``` and update the mysql_password to your sql root database password.
 4. Create a virtual environment and activate it by using the following commands:
 \
-  4.1 ```cd <location to the cloned repo>```
+  4.1 ```cd <location to the cloned repo/App>```
   \
   4.2 ```py -3 -m venv fooddelivers```
   \

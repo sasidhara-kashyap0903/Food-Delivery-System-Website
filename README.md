@@ -23,7 +23,7 @@
 
 Food Delivers is a website built as a part of the CS-432 Databases course at IIT Gandhinagar. It implements key features essential for a food delivery service, including user registration, order processing, menu management etc. The website is even optimized for mobile devices.
 
-Short on time? Check out our [5-minute demo ⏱️](https://iitgnacin-my.sharepoint.com/personal/22110050_iitgn_ac_in/_layouts/15/stream.aspx?id=%2Fpersonal%2F22110050%5Fiitgn%5Fac%5Fin%2FDocuments%2Fgithub%2FFood%2DDelivery%2DSystem%2DWebsite%2FWebsite%20Video%2FWebsite%20Video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E63c2a7c3%2Da92b%2D4c96%2Db7af%2Df82148f42b78)!
+Short on time? Check out our [5-minute demo ⏱️](https://iitgnacin-my.sharepoint.com/:v:/g/personal/22110050_iitgn_ac_in/ERPKJ4XklBxLnGm0DlP5ZjoBlLor2-MnAwYNJVAveyxSjg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=6iFNyG)!
 
 **Tip**: use **[srivibhav.pythonanywhere.com](http://srivibhav.pythonanywhere.com/)** to check the website without the need to run any code. To know more about the project, please refer to the Reports section.
 
